@@ -44,7 +44,6 @@ resources:
       endpoint: 'pagopa'
 
 stages:
-
   - stage: Wait
     jobs:  
     - job: waitForValidation
