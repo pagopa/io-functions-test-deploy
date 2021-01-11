@@ -63,7 +63,7 @@ stages:
   # Prepare Artifact
   - stage: Prepare_artifact
     dependsOn:
-      - Release
+      - Wait
     jobs:
       - job: 'prepare_artifact'
         steps:
