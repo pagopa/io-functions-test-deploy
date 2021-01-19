@@ -32,7 +32,7 @@ resources:
       type: github
       name: pagopa/azure-pipeline-templates
       ref: refs/tags/v4
-      endpoint: variables['GIT_USERNAME']
+      endpoint: $[variables.GIT_USERNAME]
 
 stages:
 
