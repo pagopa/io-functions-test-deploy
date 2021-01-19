@@ -26,8 +26,6 @@ parameters:
   type: string
 - name: 'gitHubConnection'
   type: string
-- name: 'gitToken'
-  type: string
 
 # Node runtime parameters
 - name: 'nodeVersion'
