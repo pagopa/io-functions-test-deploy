@@ -32,7 +32,7 @@ resources:
       type: github
       name: pagopa/azure-pipeline-templates
       ref: refs/tags/v4
-      endpoint: 'pagopa'
+      endpoint: '$(GIT_USERNAME)'
 
 stages:
 
@@ -58,7 +58,7 @@ stages:
       - job: make_release
         steps:
         - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-          - template: templates/node-github-release/template.yaml@pagopaCommons 
+          - template: azure-templates/node-github-release.yaml # templates/node-github-release/template.yaml@pagopaCommons 
             parameters:
               semver: '${{ parameters.RELEASE_SEMVER }}'
               gitEmail: $(GIT_EMAIL)
