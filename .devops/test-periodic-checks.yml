@@ -1,9 +1,18 @@
 # Azure DevOps pipeline to do periodic checks
 #
 
-# A pipeline with no CI trigger
+# A pipeline with no CI trigger, just schedules
 trigger: none
 pr: none
+
+schedules:
+  - cron: "* * * * *"
+    displayName: Daily midnight build
+    branches:
+      include:
+      - master
+    always: true # Run always irrespective of changes
+
 
 # Execute agents (jobs) on latest Ubuntu version.
 # To change OS for a specific, ovverride "pool" attribute inside the job definition
@@ -14,17 +23,9 @@ variables:
   NODE_VERSION: '10.14.1'
 
 
-schedules:
-- cron: "* * * * *"
-  displayName: Daily midnight build
-  branches:
-    include:
-    - master
-  always: true # Run always irrespective of changes
-
 
 jobs:
   - job: first_check
     steps:
-    - template: azure-templates/setup-project.yml
+    # - template: azure-templates/setup-project.yml
     - bash: echo "Ci sono" && exit 0;
