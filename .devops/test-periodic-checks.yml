@@ -22,7 +22,12 @@ pool:
 
 variables:
   NODE_VERSION: '10.14.1'
-
+  
+parameters:
+  # the branch, tag or commit to deploy
+  - name: 'gitReference'
+    type: string
+    default: '$(Build.SourceVersion)'
 
 
 jobs:
