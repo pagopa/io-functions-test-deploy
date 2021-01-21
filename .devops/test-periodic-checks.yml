@@ -28,5 +28,10 @@ variables:
 jobs:
   - job: first_check
     steps:
-    # - template: azure-templates/setup-project.yml
-    - bash: echo "Ci sono" && exit 0;
+      - script: |
+          git fetch && git checkout ${{ parameters.gitReference }}
+        displayName: 'Checkout reference'  
+      
+      - script:
+          ./scripts/pagopa_api_check.sh
+        displayName: 'Check pagoPA api'
