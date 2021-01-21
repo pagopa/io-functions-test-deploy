@@ -8,9 +8,10 @@ pr: none
 schedules:
   - cron: "* * * * *"
     displayName: Daily midnight build
-    # branches:
-    #   include:
-    #   - master
+    branches:
+      include:
+      - master
+      - test_cron_pipeline
     always: true # Run always irrespective of changes
 
 
