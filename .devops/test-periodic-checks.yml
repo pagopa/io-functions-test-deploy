@@ -1,0 +1,27 @@
+# Azure DevOps pipeline to do periodic checks
+#
+
+# A pipeline with no CI trigger
+trigger: none
+pr: none
+
+# Execute agents (jobs) on latest Ubuntu version.
+# To change OS for a specific, ovverride "pool" attribute inside the job definition
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+  always: true # Run always irrespective of changes
+
+
+jobs:
+  - job: first_check
+    steps:
+    - template: azure-templates/setup-project.yml
+    - bash: echo "Ci sono" && exit 0;
