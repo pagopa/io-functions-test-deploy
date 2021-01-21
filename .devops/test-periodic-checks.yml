@@ -28,4 +28,4 @@ jobs:
   - job: first_check
     steps:
     # - template: azure-templates/setup-project.yml
-    - bash: echo "Ci sono" && exit 0;
+    - bash: echo "Ci sono" && exit 1;
