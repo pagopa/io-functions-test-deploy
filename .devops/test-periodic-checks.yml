@@ -8,9 +8,9 @@ pr: none
 schedules:
   - cron: "* * * * *"
     displayName: Daily midnight build
-    branches:
-      include:
-      - master
+    # branches:
+    #   include:
+    #   - master
     always: true # Run always irrespective of changes
 
 
@@ -28,4 +28,4 @@ jobs:
   - job: first_check
     steps:
     # - template: azure-templates/setup-project.yml
-    - bash: echo "Ci sono" && exit 1;
+    - bash: echo "Ci sono" && exit 0;
