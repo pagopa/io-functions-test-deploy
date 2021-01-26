@@ -31,7 +31,7 @@ resources:
     - repository: pagopaCommons
       type: github
       name: pagopa/azure-pipeline-templates
-      ref: refs/tags/v4
+      ref: refs/heads/release-template-refinement
       endpoint: github-bot
 
 stages:
@@ -55,13 +55,14 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     jobs:
-      - checkout: self
-        persistCredentials: true
-        
+  
       - job: make_release
         steps:
         - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-          - template: azure-templates/node-github-release_v2.yaml # templates/node-github-release/template.yaml@pagopaCommons 
+          - checkout: self
+            persistCredentials: true
+          # - template: templates/node-github-release/template.yaml@pagopaCommons 
+          - template: azure-templates/node-github-release_v2.yaml
             parameters:
               semver: '${{ parameters.RELEASE_SEMVER }}'
               gitEmail: $(GIT_EMAIL)
