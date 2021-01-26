@@ -55,9 +55,10 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     jobs:
-      - job: make_release
-        checkout: self
+      - checkout: self
         persistCredentials: true
+
+      - job: make_release
         steps:
         - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
           - template: azure-templates/node-github-release_v2.yaml # templates/node-github-release/template.yaml@pagopaCommons 
