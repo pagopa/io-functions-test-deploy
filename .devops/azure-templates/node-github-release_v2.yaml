@@ -41,10 +41,12 @@ steps:
   
 # bump version
 - script: |
+    set -e
     npm version ${{ parameters.semver }} -m "Bump version to %s [skip ci]"
     NEXT_VERSION=$(node -p "require('./package.json').version")
     RELEASE_TAG="v$NEXT_VERSION-RELEASE"
     git tag $RELEASE_TAG
+  failOnStderr: true
   displayName: 'Version bump and tag'
 - script: |
     NEXT_VERSION=$(node -p "require('./package.json').version")
