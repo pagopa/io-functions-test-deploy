@@ -42,10 +42,10 @@ resources:
 
 stages:
 
-- stage: B
+- stage: Deploy SDK
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
     steps:
       - script: echo Hello Stage B!
-      - script: echo $(deploySDK) $(isBranchMaster)
+      - script: echo $(deploySDK) $(isBranchMaster) ${{ not(isBranchMaster) }}
