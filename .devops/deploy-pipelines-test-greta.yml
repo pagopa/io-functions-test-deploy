@@ -1,0 +1,53 @@
+# Azure DevOps pipeline to release a new version and deploy to production.
+
+variables:
+  NODE_VERSION: '10.14.1'
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
+parameters:
+  - name: 'RELEASE_SEMVER'
+    displayName: 'When packing a release, define the version bump to apply'
+    type: string
+    values:
+      - major
+      - minor
+      - patch
+    default: minor
+
+# Only manual activations are intended
+trigger: none
+pr: none
+
+# This pipeline has been implemented to be run on hosted agent pools based both
+# on 'windows' and 'ubuntu' virtual machine images and using the scripts defined
+# in the package.json file. Since we are deploying on Azure functions on Windows
+# runtime, the pipeline is currently configured to use a Windows hosted image for
+# the build and deploy.
+pool:
+  vmImage: 'windows-2019'
+
+resources:
+  repositories:
+    - repository: pagopaCommons
+      type: github
+      name: pagopa/azure-pipeline-templates
+      ref: refs/tags/v4
+      endpoint: github-bot
+
+
+
+stages:
+- stage: A
+  jobs:
+  - job: A1
+    steps:
+      - script: echo Hello Stage A!
+
+- stage: B
+  condition: and(succeeded(), eq(variables.isMain, true))
+  jobs:
+  - job: B1
+    steps:
+      - script: echo Hello Stage B!
+      - script: echo $(isMain)
