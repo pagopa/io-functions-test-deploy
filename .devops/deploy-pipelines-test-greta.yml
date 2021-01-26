@@ -51,7 +51,6 @@ stages:
       - script: echo $(deploySDK) $(isBranchMaster)
 
 - stage: Deploy_SDK_2
-  condition: $(isBranchMaster)
   jobs:
   - job: B2
     steps:
