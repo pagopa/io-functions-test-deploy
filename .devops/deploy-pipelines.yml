@@ -55,7 +55,8 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     jobs:
-      - persistCredentials: true
+      - checkout: self
+        persistCredentials: true
         
       - job: make_release
         steps:
