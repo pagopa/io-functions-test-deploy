@@ -69,8 +69,8 @@ stages:
           - script: |
               yarn install --frozen-lockfile --no-progress --non-interactive --network-concurrency 1
             displayName: 'Install node modules'
-          # - template: templates/node-github-release/template.yaml@pagopaCommons 
-          - template: azure-templates/node-github-release_v2.yaml
+          - template: templates/node-github-release/template.yaml@pagopaCommons 
+          #- template: azure-templates/node-github-release_v2.yaml
             parameters:
               semver: '${{ parameters.RELEASE_SEMVER }}'
               gitEmail: $(GIT_EMAIL)
