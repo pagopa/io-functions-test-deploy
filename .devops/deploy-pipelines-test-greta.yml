@@ -42,7 +42,7 @@ resources:
 
 stages:
 
-- stage: Deploy SDK
+- stage: Deploy_SDK
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
