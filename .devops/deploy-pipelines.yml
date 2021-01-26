@@ -55,9 +55,8 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     jobs:
-      - checkout: self
-        persistCredentials: true
-
+      - persistCredentials: true
+        
       - job: make_release
         steps:
         - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
