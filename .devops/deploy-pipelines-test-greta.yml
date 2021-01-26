@@ -40,11 +40,6 @@ resources:
 
 
 stages:
-- stage: A
-  jobs:
-  - job: A1
-    steps:
-      - script: echo Hello Stage A!
 
 - stage: B
   condition: and(succeeded(), eq(variables.deploySDK, true))
