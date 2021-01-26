@@ -18,6 +18,7 @@ include {
 
 terraform {
   source = "git::git@github.com:pagopa/io-infrastructure-modules-new.git//azurerm_function_app?ref=v2.1.10"
+  # source = "/Users/pasqualedevita/Documents/github/io-infrastructure-modules-new/azurerm_function_app"
 }
 
 inputs = {
@@ -66,4 +67,9 @@ inputs = {
   ]
 
   subnet_id       = dependency.subnet.outputs.id
+
+  # web_test = {
+  #   application_insights_id = dependency.application_insights.outputs.id
+  #   enabled                 = true
+  # }
 }

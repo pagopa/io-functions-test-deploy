@@ -56,17 +56,16 @@ stages:
       vmImage: 'ubuntu-latest'
     jobs:
       - job: make_release
+        checkout: self
+        persistCredentials: true
         steps:
         - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-          - template: azure-templates/node-github-release.yaml # templates/node-github-release/template.yaml@pagopaCommons 
+          - template: azure-templates/node-github-release_v2.yaml # templates/node-github-release/template.yaml@pagopaCommons 
             parameters:
               semver: '${{ parameters.RELEASE_SEMVER }}'
               gitEmail: $(GIT_EMAIL)
               gitUsername: $(GIT_USERNAME)
               gitHubConnection: $(GITHUB_CONNECTION)
-              nodeVersion: $(NODE_VERSION)
-              pkg_cache_version_id: $(CACHE_VERSION_ID)
-              pkg_cache_folder: $(YARN_CACHE_FOLDER)
 
         - ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
           - script: |
