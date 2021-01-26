@@ -3,7 +3,9 @@
 variables:
   NODE_VERSION: '10.14.1'
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
+
+  deploySDK: $[eq(parameters['RELEASE_SEMVER'], 'major')]
 
 parameters:
   - name: 'RELEASE_SEMVER'
@@ -45,9 +47,9 @@ stages:
       - script: echo Hello Stage A!
 
 - stage: B
-  condition: and(succeeded(), eq(variables.isMain, true))
+  condition: and(succeeded(), eq(variables.deploySDK, true))
   jobs:
   - job: B1
     steps:
       - script: echo Hello Stage B!
-      - script: echo $(isMain)
+      - script: echo $(deploySDK)
