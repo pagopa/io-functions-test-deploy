@@ -5,7 +5,7 @@ variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 
-  deploySDK: $[eq(parameters['RELEASE_SEMVER'], 'major')]
+  deploySDK: $[eq(parameters.RELEASE_SEMVER, 'major')]
 
 parameters:
   - name: 'RELEASE_SEMVER'
