@@ -53,7 +53,7 @@ stages:
 - stage: Deploy_SDK_2
   condition: $(isBranchMaster)
   jobs:
-  - job: B1
+  - job: B2
     steps:
-      - script: echo Hello Stage B!
-      - script: echo $(deploySDK) $(isBranchMaster)
+      - script: echo Hello Stage C!
+        condition: eq(variables.isBranchMaster, false)
