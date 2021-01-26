@@ -42,7 +42,7 @@ resources:
 stages:
 
 - stage: B
-  condition: and(succeeded(), eq(variables.deploySDK, true))
+  condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
     steps:
