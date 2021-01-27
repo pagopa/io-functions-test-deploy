@@ -42,4 +42,4 @@ stages:
 
 - template: azure-templates/stage_template.yml
   parameters:
-    deploySDK: ${{ variables.deploySDK }}
+    deploySDK: $[ variables.deploySDK ]
