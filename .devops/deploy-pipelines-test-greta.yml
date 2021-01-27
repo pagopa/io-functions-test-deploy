@@ -40,6 +40,12 @@ resources:
 
 stages:
 
+- stage: TestDependency
+  jobs:
+  - job: B1
+    steps:
+      - script: echo Hello Stage TestDependency!
+
 - template: azure-templates/stage_template.yml
   parameters:
     deploySDK: ${{ eq(variables.deploySDK, true) }} 

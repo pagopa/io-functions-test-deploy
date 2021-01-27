@@ -10,6 +10,7 @@ parameters:
 stages:
 
 - stage: Deploy_SDK
+  dependsOn: TestDependency
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
