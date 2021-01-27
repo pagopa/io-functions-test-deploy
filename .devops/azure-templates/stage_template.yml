@@ -5,8 +5,7 @@ parameters:
     default: True
 
   - name: 'isBranchMaster'
-    type: boolean
-    default: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+    default:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
 stages:
 
