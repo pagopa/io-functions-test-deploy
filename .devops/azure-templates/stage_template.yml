@@ -10,6 +10,7 @@ parameters:
 stages:
 
 - stage: Deploy_SDK
+  dependsOn: Valore_non_Esistente
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
@@ -18,7 +19,6 @@ stages:
       - script: echo $(deploySDK) $(isBranchMaster)
 
 - stage: Deploy_SDK_2
-  dependsOn: []
   jobs:
   - job: B2
     steps:
