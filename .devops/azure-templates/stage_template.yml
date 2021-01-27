@@ -1,0 +1,29 @@
+
+
+variables:
+  isBranchMaster: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+
+parameters:
+  - name: 'deploySDK'
+    type: boolean
+    default: True
+
+
+
+
+stages:
+
+- stage: Deploy_SDK
+  condition: eq(variables.deploySDK, true)
+  jobs:
+  - job: B1
+    steps:
+      - script: echo Hello Stage B!
+      - script: echo $(deploySDK) $(isBranchMaster)
+
+- stage: Deploy_SDK_2
+  jobs:
+  - job: B2
+    steps:
+      - script: echo Hello Stage C!
+        condition: eq(variables.isBranchMaster, false)
