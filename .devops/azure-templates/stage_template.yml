@@ -2,11 +2,10 @@
 parameters:
   - name: 'deploySDK'
     type: boolean
-    default: True
+    default: False
 
-
-variables: 
-  isBranchMaster:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+  - name: 'isBranchMaster'
+    default:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
 stages:
 
