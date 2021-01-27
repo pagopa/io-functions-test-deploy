@@ -14,7 +14,7 @@ parameters:
 stages:
 
 - stage: Deploy_SDK
-  dependsOn: ['${{ variables.dependsOnStageName }}']
+  dependsOn: ['${{parameters.dependsOnStageName}}']
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1

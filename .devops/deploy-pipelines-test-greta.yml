@@ -5,7 +5,7 @@ variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
   # isBranchMaster: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
-  deploySDK: $[ or( eq('${{ parameters.RELEASE_SEMVER }}', 'major'), eq('${{ parameters.RELEASE_SEMVER }}', 'patch') )]
+  deploySDK_var: $[ or( eq('${{ parameters.RELEASE_SEMVER }}', 'major'), eq('${{ parameters.RELEASE_SEMVER }}', 'patch') )]
 
 parameters:
   - name: 'RELEASE_SEMVER'
@@ -56,4 +56,4 @@ stages:
 - template: azure-templates/stage_template.yml
   parameters:
     dependsOnStageName: TestDependency_2
-    deploySDK: ${{ eq(variables.deploySDK, true) }} 
+    deploySDK: ${{ eq(variables.deploySDK_var, true) }} 
