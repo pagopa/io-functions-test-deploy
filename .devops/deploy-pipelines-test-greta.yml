@@ -4,7 +4,7 @@ variables:
   NODE_VERSION: '10.14.1'
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
-  isBranchMaster: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+  # isBranchMaster: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
   deploySDK: $[ or( eq('${{ parameters.RELEASE_SEMVER }}', 'major'), eq('${{ parameters.RELEASE_SEMVER }}', 'patch') )]
 
 parameters:
