@@ -6,7 +6,8 @@ variables:
 
 
   isBranchMaster: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
-  deploySDK: $[ or( eq('${{ parameters.RELEASE_SEMVER }}', 'major'), eq('${{ parameters.RELEASE_SEMVER }}', 'patch') )]
+  deploySDK: true
+  # deploySDK: $[ or( eq('${{ parameters.RELEASE_SEMVER }}', 'major'), eq('${{ parameters.RELEASE_SEMVER }}', 'patch') )]
 
 parameters:
   - name: 'RELEASE_SEMVER'
