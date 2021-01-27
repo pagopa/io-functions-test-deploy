@@ -10,7 +10,7 @@ parameters:
 stages:
 
 - stage: Deploy_SDK
-  dependsOn: Valore_non_Esistente
+  dependsOn: TestDependency_2
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1

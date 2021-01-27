@@ -40,7 +40,14 @@ resources:
 
 stages:
 
-- stage: TestDependency
+- stage: TestDependency_1
+  jobs:
+  - job: B1
+    steps:
+      - script: echo Hello Stage TestDependency!
+
+- stage: TestDependency_2
+  dependsOn: []
   jobs:
   - job: B1
     steps:
