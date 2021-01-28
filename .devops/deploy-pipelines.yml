@@ -48,7 +48,8 @@ stages:
               buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
               waitForQueuedBuildsToFinish: true
               waitForQueuedBuildsToFinishRefreshTime: 60
-              authenticationMethod: "OAuth Token"
+              authenticationMethod: "Personal Access Token"
+              password: $(AZ_PAT)
 
   # Create a relase
   # Activated when ONE OF these are met:
