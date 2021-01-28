@@ -27,9 +27,9 @@ stages:
 
 - stage: Deploy_SDK_2
   dependsOn: []
-  
+
   variables: 
-    myVariable: $[if(variables.setVariableToA, 'AAA', 'BBB'])]
+    myVariable: $[if( eq( variables.setVariableToA, true), 'AAA', 'BBB'])]
 
   jobs:
   - job: B2
