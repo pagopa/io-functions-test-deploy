@@ -11,8 +11,8 @@ parameters:
   - name: 'isBranchMaster'
     default:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
-  - name: 'setVariableToA'
-    type: boolean
+  - name: 'variableValue'
+    type: string
 
 stages:
 
@@ -29,12 +29,12 @@ stages:
   dependsOn: []
 
   variables: 
-    ${{ if eq(parameters.setVariableToA, true) }}:
-      myVariable: 'AAA'
-    ${{ if ne(parameters.setVariableToA, true) }}:
-      myVariable: 'BBB'
+    ${{ if eq(parameters.variableValue, '') }}:
+      myVariable: ''
+    ${{ if ne(parameters.variableValue, '') }}:
+      myVariable: 'C''è un valore'
 
   jobs:
   - job: B2
     steps:
-      - script: echo Hello ${{ variables.myVariable }}! -> ${{ parameters.setVariableToA }}
+      - script: echo Hello ${{ variables.myVariable }}! -> ${{ parameters.variableValue }}

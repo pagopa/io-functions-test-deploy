@@ -18,9 +18,9 @@ parameters:
     default: minor
 
 
-  - name: 'setVariableToA'
-    type: boolean
-    default: True
+  - name: 'variableValue'
+    type: string
+    default: ''
 
 # Only manual activations are intended
 trigger: none
@@ -62,4 +62,4 @@ stages:
   parameters:
     dependsOn: [TestDependency_1, TestDependency_2]
     deploySDK: ${{ eq(variables.deploySDK_var, true) }} 
-    setVariableToA: ${{ eq(parameters.setVariableToA, true) }} 
+    variableValue: ${{ parameters.variableValue }} 
