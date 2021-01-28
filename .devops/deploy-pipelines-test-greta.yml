@@ -18,10 +18,6 @@ parameters:
     default: minor
 
 
-  - name: 'variableValue'
-    type: string
-    default: ''
-
 # Only manual activations are intended
 trigger: none
 pr: none
@@ -62,4 +58,4 @@ stages:
   parameters:
     dependsOn: [TestDependency_1, TestDependency_2]
     deploySDK: ${{ eq(variables.deploySDK_var, true) }} 
-    variableValue: ${{ parameters.variableValue }} 
+    variableValue: '' 
