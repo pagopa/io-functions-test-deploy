@@ -48,7 +48,7 @@ stages:
               buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
               waitForQueuedBuildsToFinish: true
               waitForQueuedBuildsToFinishRefreshTime: 60
-              authenticationMethod: "Default Credentials"
+              authenticationMethod: "OAuth Token"
 
   # Create a relase
   # Activated when ONE OF these are met:
