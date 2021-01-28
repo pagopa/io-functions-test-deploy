@@ -55,5 +55,5 @@ stages:
 
 - template: azure-templates/stage_template.yml
   parameters:
-    dependsOnStageName: TestDependency_1
+    dependsOn: [TestDependency_1]
     deploySDK: ${{ eq(variables.deploySDK_var, true) }} 

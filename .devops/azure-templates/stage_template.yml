@@ -4,9 +4,9 @@ parameters:
     type: boolean
     default: False
 
-  - name: 'dependsOnStageName'
-    type: string
-    default: 'No_Name'
+  - name: 'dependsOn'
+    type: object
+    default: []
 
   - name: 'isBranchMaster'
     default:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
@@ -14,7 +14,7 @@ parameters:
 stages:
 
 - stage: Deploy_SDK
-  dependsOn: ['${{parameters.dependsOnStageName}}']
+  dependsOn: ${{parameters.dependsOn}}
   condition: eq(variables.deploySDK, true)
   jobs:
   - job: B1
