@@ -31,11 +31,10 @@ stages:
   variables: 
 
     - name: 'myVariable'
-      value:
       ${{ if eq(parameters.variableValue, '') }}:
-        ''
+        value: ''
       ${{ if ne(parameters.variableValue, '') }}:
-        'C''è un valore'
+        value: 'C''è un valore'
 
   jobs:
   - job: B2
