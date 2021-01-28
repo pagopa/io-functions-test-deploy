@@ -38,4 +38,3 @@ stages:
   - job: B2
     steps:
       - script: echo Hello ${{ variables.myVariable }}!
-        condition: eq(variables.isBranchMaster, false)
