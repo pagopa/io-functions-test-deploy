@@ -58,4 +58,4 @@ stages:
   parameters:
     dependsOn: [TestDependency_1, TestDependency_2]
     deploySDK: ${{ eq(variables.deploySDK_var, true) }} 
-    variableValue: '' 
+    variableValue: 'Prova' 
