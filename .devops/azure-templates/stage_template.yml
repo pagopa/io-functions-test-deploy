@@ -29,9 +29,9 @@ stages:
   dependsOn: []
 
   variables: 
-    ${{ if(variables.setVariableToA) }}:
+    ${{ if( eq(variables.setVariableToA, true)) }}:
       myVariable: 'AAA'
-    ${{ if( not(variables.setVariableToA)) }}:
+    ${{ if( ne(variables.setVariableToA, true)) }}:
       myVariable: 'BBB'
 
   jobs:
