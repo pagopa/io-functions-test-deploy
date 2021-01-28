@@ -36,11 +36,26 @@ resources:
 
 stages:
 
+
+  # Check that the staging instance is healthy
+  - stage: Test
+    jobs:
+      - job: 'do_test'       
+        steps:
+          - task: TriggerBuild@3
+            displayName: 'Trigger a new build of Test'
+            inputs:
+              buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
+              waitForQueuedBuildsToFinish: true
+              waitForQueuedBuildsToFinishRefreshTime: 60  
+
   # Create a relase
   # Activated when ONE OF these are met:
   # - is on branch master 
   # - is a tag in the form v{version}-RELEASE
   - stage: Release
+    dependsOn:
+      - Test
     condition:
       and(
         succeeded(),
