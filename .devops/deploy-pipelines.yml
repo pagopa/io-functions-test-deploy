@@ -3,7 +3,8 @@
 variables:
   NODE_VERSION: '10.14.1'
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-
+  system_accesstoken: $(System.AccessToken)
+  
 parameters:
   - name: 'RELEASE_SEMVER'
     displayName: 'When packing a release, define the version bump to apply'
@@ -48,8 +49,8 @@ stages:
               buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
               waitForQueuedBuildsToFinish: true
               waitForQueuedBuildsToFinishRefreshTime: 60
-              authenticationMethod: "Personal Access Token"
-              password: $(AZ_PAT)
+              authenticationMethod: "OAuth Token"
+              password: $(system_accesstoken)
 
   # Create a relase
   # Activated when ONE OF these are met:
