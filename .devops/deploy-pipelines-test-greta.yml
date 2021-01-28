@@ -17,6 +17,11 @@ parameters:
       - patch
     default: minor
 
+
+  - name: 'setVariableToA'
+    type: boolean
+    default: True
+
 # Only manual activations are intended
 trigger: none
 pr: none
@@ -57,4 +62,4 @@ stages:
   parameters:
     dependsOn: [TestDependency_1, TestDependency_2]
     deploySDK: ${{ eq(variables.deploySDK_var, true) }} 
-    setVariableToA: ${{ eq(variables.deploySDK_var, true) }} 
+    setVariableToA: ${{ eq(parameters.setVariableToA, true) }} 
