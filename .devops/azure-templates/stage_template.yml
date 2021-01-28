@@ -29,12 +29,12 @@ stages:
   dependsOn: []
 
   variables: 
-    ${{ if eq(variables.setVariableToA, true) }}:
+    ${{ if eq(parameters.setVariableToA, true) }}:
       myVariable: 'AAA'
-    ${{ if ne(variables.setVariableToA, true) }}:
+    ${{ if ne(parameters.setVariableToA, true) }}:
       myVariable: 'BBB'
 
   jobs:
   - job: B2
     steps:
-      - script: echo Hello ${{ variables.myVariable }}!
+      - script: echo Hello ${{ variables.myVariable }}! -> ${{ parameters.setVariableToA }}
