@@ -29,10 +29,13 @@ stages:
   dependsOn: []
 
   variables: 
-    ${{ if eq(parameters.variableValue, '') }}:
-      myVariable: ''
-    ${{ if ne(parameters.variableValue, '') }}:
-      myVariable: 'C''è un valore'
+
+    - name: 'myVariable'
+      value:
+      ${{ if eq(parameters.variableValue, '') }}:
+        ''
+      ${{ if ne(parameters.variableValue, '') }}:
+        'C''è un valore'
 
   jobs:
   - job: B2
