@@ -11,6 +11,9 @@ parameters:
   - name: 'isBranchMaster'
     default:  $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
+  - name: 'setVariableToA'
+    type: boolean
+
 stages:
 
 - stage: Deploy_SDK
@@ -23,8 +26,13 @@ stages:
       - script: echo $(deploySDK) $(isBranchMaster)
 
 - stage: Deploy_SDK_2
+  dependsOn: []
+  
+  variables: 
+    myVariable: $[if(variables.setVariableToA, 'AAA', 'BBB'])]
+
   jobs:
   - job: B2
     steps:
-      - script: echo Hello Stage C!
+      - script: echo Hello ${{ variables.myVariable }}!
         condition: eq(variables.isBranchMaster, false)
