@@ -29,7 +29,10 @@ stages:
   dependsOn: []
 
   variables: 
-    myVariable: $[if( eq( variables.setVariableToA, true), 'AAA', 'BBB'])]
+    ${{ if(variables.setVariableToA) }}:
+      myVariable: 'AAA'
+    ${{ if( not(variables.setVariableToA)) }}:
+      myVariable: 'BBB'
 
   jobs:
   - job: B2
