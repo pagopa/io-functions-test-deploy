@@ -37,6 +37,12 @@ stages:
         value: 'C''è un valore'
 
   jobs:
-  - job: B2
-    steps:
+
+    - job: B2
+      steps:
+      # Create a variable
+      - script: |
+          [ "${{parameters.sdkPackageName}}" == "" ] && PKG_NAME='' || PKG_NAME='--package-name ${{parameters.sdkPackageName}}'  
+          echo "##vso[task.setvariable variable=variableValue]$PKG_NAME"
+
       - script: echo Hello ${{ variables.myVariable }}! -> ${{ parameters.variableValue }} !!
