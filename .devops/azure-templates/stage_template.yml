@@ -28,20 +28,12 @@ stages:
 - stage: Deploy_SDK_2
   dependsOn: []
 
-  variables: 
-
-    - name: 'myVariable'
-      ${{ if eq(parameters.variableValue, '') }}:
-        value: ''
-      ${{ if ne(parameters.variableValue, '') }}:
-        value: 'C''è un valore'
-
   jobs:
 
     - job: B2
       steps:
       # Create a variable
-      - script: |
+      - bash: |
           [ "${{parameters.variableValue}}" == "" ] && PKG_NAME='' || PKG_NAME='--package-name ${{parameters.variableValue}}'  
           echo "##vso[task.setvariable variable=myVariable]$PKG_NAME"
 
