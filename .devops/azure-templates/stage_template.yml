@@ -28,6 +28,9 @@ stages:
 - stage: Deploy_SDK_2
   dependsOn: []
 
+  variables:
+    myVariable: 'Changed in bash script'
+
   jobs:
 
     - job: B2
