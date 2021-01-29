@@ -5,12 +5,4 @@ trigger:
 extends:
   template: azure-templates/base-template.yml
   parameters:
-    buildSteps:  
-      - bash: echo Test #Passes
-        displayName: succeed
-      - bash: echo "Test"
-        displayName: succeed
-      # - task: CmdLine@2
-      #   displayName: Test 3 - Will Fail
-      #   inputs:
-      #     script: echo "Script Test"
+      yesNo: false # set to a non-boolean value to have the build fail

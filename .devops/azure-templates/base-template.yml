@@ -1,25 +1,8 @@
-# File: start.yml
+# File: simple-param.yml
 parameters:
-- name: buildSteps # the name of the parameter is buildSteps
-  type: stepList # data type is StepList
-  default: [] # default value of buildSteps
-stages:
-- stage: secure_buildstage
-  pool: Hosted VS2017
-  jobs:
-  - job: secure_buildjob
-    steps:
-    - script: echo This happens before code 
-      displayName: 'Base: Pre-build'
-    - script: echo Building
-      displayName: 'Base: Build'
+- name: yesNo # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
 
-    - ${{ each step in parameters.buildSteps }}:
-      - ${{ each pair in step }}:
-          ${{ if ne(pair.value, 'CmdLine@2') }}:
-            ${{ pair.key }}: ${{ pair.value }}       
-          ${{ if eq(pair.value, 'CmdLine@2') }}: 
-            '${{ pair.value }}': error         
-
-    - script: echo This happens after code
-      displayName: 'Base: Signing'
+steps:
+- script: echo ${{ parameters.yesNo }}
