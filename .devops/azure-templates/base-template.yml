@@ -1,8 +1,40 @@
-# File: simple-param.yml
+# job-build.yml
 parameters:
-- name: yesNo # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
+  preBuild: []
+  postBuild: []
+  
+jobs:
+- job:
+  displayName: 'Build Project'
+  steps:
+    
+    - task: Bash@3
+      displayName: 'Restore packages'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo Restore all packages needed
+    - task: Bash@3
+      displayName: 'Install certificates'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo Install all the certificates needed
+     
+    - ${{ parameters.preBuild }} # Here we start the prebuild steps
 
-steps:
-- script: echo ${{ parameters.yesNo }}
+    - task: Bash@3
+      displayName: 'Build'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo This script represents the build tasks
+          
+    - ${{ parameters.postBuild }} # Here we start the postbuild steps
+
+    - task: Bash@3
+      displayName: 'Publish'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo This script represents the publish tasks

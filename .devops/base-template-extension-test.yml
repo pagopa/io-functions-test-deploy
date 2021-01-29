@@ -1,8 +1,25 @@
-# File: azure-pipelines.yml
-trigger:
-- master
-
-extends:
-  template: azure-templates/base-template.yml
-  parameters:
-      yesNo: false # set to a non-boolean value to have the build fail
+stages:
+  - stage: Build
+    jobs:
+    - template: azure-templates/base-template.yml
+      parameters:
+        preBuild:
+          - task: Bash@3
+            displayName: 'Add custom configuration'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo Add a specific configuration
+          - task: Bash@3
+            displayName: 'Define application version'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo Define the application version automatically
+        postBuild:
+          - task: Bash@3
+            displayName: 'Push git tag'
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo Push a tag to the Git repository  
