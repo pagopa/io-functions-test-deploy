@@ -1,13 +1,18 @@
 # job-build.yml
 parameters:
-  preBuild: []
-  postBuild: []
+  - name: 'preBuild'
+    type: stepList
+    default: []
+  - name: 'postBuild'
+    type: stepList
+    default: []
   
+
 jobs:
 - job:
   displayName: 'Build Project'
-  steps:
-    
+  
+  steps:  
     - task: Bash@3
       displayName: 'Restore packages'
       inputs:
