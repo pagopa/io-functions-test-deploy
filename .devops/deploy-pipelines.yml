@@ -39,18 +39,18 @@ stages:
 
 
   # Check that the staging instance is healthy
-  - stage: Test
-    jobs:
-      - job: 'do_test'       
-        steps:
-          - task: TriggerBuild@3
-            displayName: 'Trigger a new build of Test'
-            inputs:
-              buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
-              waitForQueuedBuildsToFinish: true
-              waitForQueuedBuildsToFinishRefreshTime: 60
-              authenticationMethod: "OAuth Token"
-              password: $(system_accesstoken)
+  # - stage: Test
+  #   jobs:
+  #     - job: 'do_test'       
+  #       steps:
+  #         - task: TriggerBuild@3
+  #           displayName: 'Trigger a new build of Test'
+  #           inputs:
+  #             buildDefinition: 'pagopa.io-functions-test-deploy.code-review'
+  #             waitForQueuedBuildsToFinish: true
+  #             waitForQueuedBuildsToFinishRefreshTime: 60
+  #             authenticationMethod: "OAuth Token"
+  #             password: $(system_accesstoken)
 
   # Create a relase
   # Activated when ONE OF these are met:
