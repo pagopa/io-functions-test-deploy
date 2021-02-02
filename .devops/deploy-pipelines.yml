@@ -57,8 +57,8 @@ stages:
   # - is on branch master 
   # - is a tag in the form v{version}-RELEASE
   - stage: Release
-    dependsOn:
-      - Test
+    # dependsOn:
+    #   - Test
     condition:
       and(
         succeeded(),
