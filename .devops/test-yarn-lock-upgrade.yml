@@ -5,6 +5,9 @@
 trigger: none
 pr: none
 
+variables:
+  system.debug: true
+
 schedules:
   - cron: "0/5 * * * *"
     displayName: Daily midnight build
@@ -13,14 +16,13 @@ schedules:
       - 176591290-test-upgrade-dependencies
     always: true # Run always irrespective of changes
 
-
 resources:
   repositories:
     - repository: pagopaCommons
       type: github
       name: pagopa/azure-pipeline-templates
       ref: refs/heads/yarn-lockfile-upgrade-template
-      endpoint: pagopa
+      endpoint: 'pagopa'
 
 
 # Execute agents (jobs) on latest Ubuntu version.
@@ -29,11 +31,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 
-
 jobs:
   - job: do_upgrade
     steps:
+
       #Call the Yarn.lock updated the first time
       - template: templates/yarn-lock-upgrade/template.yaml@pagopaCommons
-        # parameters:
-        #   isTest: true
+        parameters:
+          isTest: true
