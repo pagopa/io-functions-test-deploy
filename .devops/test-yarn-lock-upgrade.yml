@@ -35,5 +35,5 @@ jobs:
     steps:
       #Call the Yarn.lock updated the first time
       - template: templates/yarn-lock-upgrade/template.yaml@pagopaCommons
-        parameters:
-          isTest: true
+        # parameters:
+        #   isTest: true
