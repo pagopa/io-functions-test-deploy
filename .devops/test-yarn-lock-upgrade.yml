@@ -39,3 +39,4 @@ jobs:
       - template: templates/yarn-lock-upgrade/template.yaml@pagopaCommons
         parameters:
           isTest: true
+          baseBranch: 176591290-test-upgrade-dependencies
