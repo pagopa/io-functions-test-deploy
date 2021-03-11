@@ -59,17 +59,6 @@ stages:
   - stage: Release
     # dependsOn:
     #   - Test
-    condition:
-      and(
-        succeeded(),
-        or(
-          eq(variables['Build.SourceBranch'], 'refs/heads/master'),
-          and(
-            startsWith(variables['Build.SourceBranch'], 'refs/tags'),
-            endsWith(variables['Build.SourceBranch'], '-RELEASE')
-          )
-        )
-      )
     pool:
       vmImage: 'ubuntu-latest'
     jobs:
