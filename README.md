@@ -1,3 +1,4 @@
+TEST
 # IO Functions template
 
 Template per l'utilizzo di Azure Functions (e Durable Functions) all'interno del
